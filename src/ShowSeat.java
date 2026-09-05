@@ -1,32 +1,27 @@
 public class ShowSeat {
-    
+    private Show show;
     private Seat seat;
-    private String status;
+    private boolean isBooked;
 
-    public ShowSeat(Seat seat) {
+    public ShowSeat(Show show, Seat seat) {
+        this.show = show;
         this.seat = seat;
-        this.status = "AVAILABLE";
+        this.isBooked = false;
     }
 
-    public boolean isAvailable() {
-        return this.status.equals("AVAILABLE");
+    public Show getShow() {
+        return show;
     }
 
-    public void markAsBooked() {
-        if (this.isAvailable()) {
-            this.status = "BOOKED";
-        }
+    public Seat getSeat() {
+        return seat;
     }
 
-    public void releaseSeat() {
-        this.status = "AVAILABLE";
+    public boolean isBooked() {
+        return isBooked;
     }
 
-    public String getSeatNumber() {
-        return this.seat.getSeatNumber();
-    }
-
-    public double getPrice() {
-        return this.seat.getPrice();
+    public void setBooked(boolean booked) {
+        isBooked = booked;
     }
 }

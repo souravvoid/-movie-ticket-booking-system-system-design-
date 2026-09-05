@@ -3,7 +3,6 @@ public class Seat {
     private String seatNumber;
     private String seatType; 
 
-    /
     public Seat(String seatNumber, String seatType) {
         this.seatNumber = seatNumber;
         this.seatType = seatType;

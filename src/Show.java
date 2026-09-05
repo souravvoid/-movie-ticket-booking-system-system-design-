@@ -1,54 +1,40 @@
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Show {
-    
+    private String showId;
     private Movie movie;
     private Screen screen;
-    private LocalTime startTime;
-    
-    
-    private List<ShowSeat> showSeats;
+    private String showTime;
+    private List<Seat> availableSeats;
 
-    public Show(Movie movie, Screen screen, LocalTime startTime) {
+    public Show(Movie movie, Screen screen, String showTime) {
         this.movie = movie;
         this.screen = screen;
-        this.startTime = startTime;
-        this.showSeats = new ArrayList<>();
-        
-        
-        for (Seat physicalSeat : screen.getSeats()) {
-            this.showSeats.add(new ShowSeat(physicalSeat));
-        }
+        this.showTime = showTime;
+        this.availableSeats = screen.getSeats();
+    }
+
+    public String getShowId() {
+        return showId;
+    }
+
+    public void setShowId(String showId) {
+        this.showId = showId;
     }
 
     public Movie getMovie() {
-        return this.movie;
+        return movie;
     }
 
     public Screen getScreen() {
-        return this.screen;
+        return screen;
     }
 
-    public LocalTime getStartTime() {
-        return this.startTime;
+    public String getShowTime() {
+        return showTime;
     }
 
-    public List<ShowSeat> getShowSeats() {
-        return this.showSeats;
-    }
-
-    public void displaySeatLayout() {
-        System.out.println("\n--- Screen " + this.screen.getScreenNumber() + " | " + this.startTime + " ---");
-        for (ShowSeat showSeat : this.showSeats) {
-            String statusStr = showSeat.isAvailable() ? "AVAILABLE" : "BOOKED";
-            // Clean Code: Max 2 levels of indentation, intention-revealing names
-            System.out.printf("%-5s [₹%-4.0f] [%-9s]  ", 
-                showSeat.getSeatNumber(), 
-                showSeat.getPrice(), 
-                statusStr);
-        }
-        System.out.println();
+    public List<Seat> getAvailableSeats() {
+        return availableSeats;
     }
 }
