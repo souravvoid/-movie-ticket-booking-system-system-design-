@@ -1,32 +1,39 @@
-
+// ================= FILE: Seat.java =================
 public class Seat {
-    private String seatNumber;
-    private String seatType; 
 
-    public Seat(String seatNumber, String seatType) {
-        this.seatNumber = seatNumber;
-        this.seatType = seatType;
-    }
-
-    public String getSeatNumber() {
-        return this.seatNumber;
-    }
-
-    public String getSeatType() {
-        return this.seatType;
-    }
-
+    // OOP Concept: Encapsulation (fields are private, exposed via getters)
     private static final double SILVER_PRICE = 150.0;
     private static final double GOLD_PRICE = 250.0;
     private static final double PLATINUM_PRICE = 400.0;
 
+    public static final String TYPE_SILVER = "SILVER";
+    public static final String TYPE_GOLD = "GOLD";
+    public static final String TYPE_PLATINUM = "PLATINUM";
+
+    private String number;
+    private String type;
+
+    // OOP Concept: this keyword (distinguishes instance field from parameter)
+    public Seat(String number, String type) {
+        this.number = number;
+        this.type = type;
+    }
+
+    public String getNumber() {
+        return this.number;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
     public double getPrice() {
-        if (this.seatType.equals("SILVER")) {
-            return SILVER_PRICE;
-        }
-        if (this.seatType.equals("GOLD")) {
+        if (TYPE_GOLD.equals(this.type)) {
             return GOLD_PRICE;
         }
-        return PLATINUM_PRICE;
+        if (TYPE_PLATINUM.equals(this.type)) {
+            return PLATINUM_PRICE;
+        }
+        return SILVER_PRICE;
     }
 }

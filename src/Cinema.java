@@ -1,25 +1,30 @@
+// ================= FILE: Cinema.java =================
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cinema {
-    private String cinemaName;
-    // OOP Concept: Composition (Cinema owns its Screens)
+
+    // OOP Concept: Composition (Cinema owns its Screens, created and managed internally)
+    private String name;
     private List<Screen> screens;
 
-    public Cinema(String cinemaName) {
-        this.cinemaName = cinemaName;
+    // OOP Concept: this keyword (distinguishes instance field from parameter)
+    public Cinema(String name) {
+        this.name = name;
         this.screens = new ArrayList<>();
     }
 
-    public void addScreen(Screen screen) {
+    public Screen createScreen(int screenNumber) {
+        Screen screen = new Screen(screenNumber);
         this.screens.add(screen);
+        return screen;
     }
 
     public List<Screen> getScreens() {
         return this.screens;
     }
 
-    public String getCinemaName() {
-        return this.cinemaName;
+    public String getName() {
+        return this.name;
     }
 }

@@ -1,50 +1,57 @@
+// ================= FILE: Booking.java =================
 import java.util.List;
 
 public class Booking {
-    private String bookingId;
-    private Customer customer;
-    private Show show;
-    private List<Seat> seats;
-    private double totalAmount;
-    private Payment payment;
 
-    public Booking(String bookingId, Customer customer, Show show, List<Seat> seats, double totalAmount) {
-        this.bookingId = bookingId;
-        this.customer = customer;
+    // OOP Concept: Static Members (shared counter generates unique booking IDs)
+    private static final String STATUS_CONFIRMED = "CONFIRMED";
+    private static final String STATUS_CANCELLED = "CANCELLED";
+
+    private static int nextBookingId = 1001;
+
+    private int bookingId;
+    private Show show;
+    private Customer customer;
+    // OOP Concept: Aggregation (Booking references ShowSeats passed via constructor)
+    private List<ShowSeat> seats;
+    private double totalAmount;
+    private String status;
+
+    // OOP Concept: this keyword (distinguishes instance field from parameter)
+    public Booking(Show show, Customer customer, List<ShowSeat> seats, double totalAmount) {
+        this.bookingId = nextBookingId++;
         this.show = show;
+        this.customer = customer;
         this.seats = seats;
         this.totalAmount = totalAmount;
+        this.status = STATUS_CONFIRMED;
     }
 
-    public String getBookingId() {
-        return bookingId;
+    public void cancel() {
+        this.status = STATUS_CANCELLED;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getBookingId() {
+        return this.bookingId;
     }
 
     public Show getShow() {
-        return show;
+        return this.show;
     }
 
-    public List<Seat> getSeats() {
-        return seats;
+    public Customer getCustomer() {
+        return this.customer;
+    }
+
+    public List<ShowSeat> getSeats() {
+        return this.seats;
     }
 
     public double getTotalAmount() {
-        return totalAmount;
+        return this.totalAmount;
     }
 
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
-    public boolean isPaid() {
-        return payment != null;
+    public String getStatus() {
+        return this.status;
     }
 }

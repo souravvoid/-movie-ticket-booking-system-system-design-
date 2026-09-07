@@ -1,29 +1,21 @@
+// ================= FILE: Customer.java =================
 public class Customer {
-    private String customerId;
+
+    // OOP Concept: Encapsulation (fields are private, exposed via getters)
     private String name;
-    private String email;
     private String phone;
 
-    public Customer(String customerId, String name, String email, String phone) {
-        this.customerId = customerId;
+    // OOP Concept: this keyword (distinguishes instance field from parameter)
+    public Customer(String name, String phone) {
         this.name = name;
-        this.email = email;
         this.phone = phone;
     }
 
-    public String getCustomerId() {
-        return customerId;
-    }
-
     public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
+        return this.name;
     }
 
     public String getPhone() {
-        return phone;
+        return this.phone;
     }
 }

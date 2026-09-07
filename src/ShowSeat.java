@@ -1,27 +1,36 @@
+// ================= FILE: ShowSeat.java =================
 public class ShowSeat {
-    private Show show;
+
+    // OOP Concept: Aggregation (ShowSeat references a Seat passed from outside)
+    private static final String STATUS_AVAILABLE = "AVAILABLE";
+    private static final String STATUS_BOOKED = "BOOKED";
+
     private Seat seat;
-    private boolean isBooked;
+    private String status;
 
-    public ShowSeat(Show show, Seat seat) {
-        this.show = show;
+    // OOP Concept: this keyword (distinguishes instance field from parameter)
+    public ShowSeat(Seat seat) {
         this.seat = seat;
-        this.isBooked = false;
-    }
-
-    public Show getShow() {
-        return show;
+        this.status = STATUS_AVAILABLE;
     }
 
     public Seat getSeat() {
-        return seat;
+        return this.seat;
     }
 
-    public boolean isBooked() {
-        return isBooked;
+    public boolean isAvailable() {
+        return STATUS_AVAILABLE.equals(this.status);
     }
 
-    public void setBooked(boolean booked) {
-        isBooked = booked;
+    public void markAsBooked() {
+        this.status = STATUS_BOOKED;
+    }
+
+    public void releaseSeat() {
+        this.status = STATUS_AVAILABLE;
+    }
+
+    public String getStatus() {
+        return this.status;
     }
 }

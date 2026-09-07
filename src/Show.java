@@ -1,40 +1,55 @@
+// ================= FILE: Show.java =================
+import java.util.ArrayList;
 import java.util.List;
 
 public class Show {
-    private String showId;
-    private Movie movie;
-    private Screen screen;
-    private String showTime;
-    private List<Seat> availableSeats;
 
+    // OOP Concept: Aggregation (Show references a Movie passed via constructor)
+    private Movie movie;
+    // OOP Concept: Aggregation (Show references a Screen passed via constructor)
+    private Screen screen;
+    // OOP Concept: Composition (Show owns its ShowSeats, created internally)
+    private List<ShowSeat> showSeats;
+    private String showTime;
+
+    // OOP Concept: this keyword (distinguishes instance field from parameter)
     public Show(Movie movie, Screen screen, String showTime) {
         this.movie = movie;
         this.screen = screen;
         this.showTime = showTime;
-        this.availableSeats = screen.getSeats();
+        this.showSeats = new ArrayList<>();
+        createShowSeatsFromScreen();
     }
 
-    public String getShowId() {
-        return showId;
-    }
-
-    public void setShowId(String showId) {
-        this.showId = showId;
+    private void createShowSeatsFromScreen() {
+        for (Seat seat : this.screen.getSeats()) {
+            this.showSeats.add(new ShowSeat(seat));
+        }
     }
 
     public Movie getMovie() {
-        return movie;
+        return this.movie;
     }
 
     public Screen getScreen() {
-        return screen;
+        return this.screen;
+    }
+
+    public List<ShowSeat> getShowSeats() {
+        return this.showSeats;
     }
 
     public String getShowTime() {
-        return showTime;
+        return this.showTime;
     }
 
-    public List<Seat> getAvailableSeats() {
-        return availableSeats;
+    public void displaySeatLayout() {
+        System.out.println("Seat layout for " + this.movie.getTitle() + " on Screen "
+                + this.screen.getScreenNumber() + " at " + this.showTime);
+        for (ShowSeat showSeat : this.showSeats) {
+            Seat seat = showSeat.getSeat();
+            System.out.println("  " + seat.getNumber() + " (" + seat.getType() + "): "
+                    + showSeat.getStatus());
+        }
     }
 }

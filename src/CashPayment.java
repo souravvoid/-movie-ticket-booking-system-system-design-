@@ -1,22 +1,20 @@
+// ================= FILE: CashPayment.java =================
 public class CashPayment extends Payment {
 
+    // OOP Concept: Inheritance (CashPayment is a type of Payment)
     private String cashierName;
 
-    public CashPayment(double amount, String paymentMethod, String cashierName) {
-        super(amount, paymentMethod);
+    public CashPayment(String cashierName) {
+        super("CASH");
         this.cashierName = cashierName;
     }
 
-    public String getCashierName() {
-        return cashierName;
-    }
-
+    // OOP Concept: Runtime Polymorphism (overrides abstract pay() from Payment)
     @Override
-    public void processPayment() {
-        // Simulate cash payment processing
-        System.out.println("Processing cash payment of $" + String.format("%.2f", getAmount()));
-        System.out.println("Cashier: " + cashierName);
-        setSuccess(true);
-        System.out.println("Cash payment received successfully!");
+    public boolean pay(double amount) {
+        System.out.println("Processing cash payment of Rs." + String.format("%.2f", amount)
+                + " accepted by cashier " + this.cashierName);
+        System.out.println("Cash payment successful!");
+        return true;
     }
 }

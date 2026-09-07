@@ -1,9 +1,12 @@
-
+// ================= FILE: Movie.java =================
 public class Movie {
+
+    // OOP Concept: Encapsulation (fields are private, exposed via getters)
     private String title;
     private String language;
-    private int durationInMinutes; 
+    private int durationInMinutes;
 
+    // OOP Concept: this keyword (distinguishes instance field from parameter)
     public Movie(String title, String language, int durationInMinutes) {
         this.title = title;
         this.language = language;
@@ -20,9 +23,5 @@ public class Movie {
 
     public int getDurationInMinutes() {
         return this.durationInMinutes;
-    }
-
-    public void displayDetails() {
-        System.out.println(this.title + " (" + this.language + ", " + this.durationInMinutes + " mins)");
     }
 }

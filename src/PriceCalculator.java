@@ -1,20 +1,15 @@
+// ================= FILE: PriceCalculator.java =================
+import java.util.List;
+
 public class PriceCalculator {
 
-    public double calculatePrice(String seatType) {
-        switch (seatType) {
-            case "PLATINUM":
-                return 400.0;
-            case "GOLD":
-                return 250.0;
-            case "SILVER":
-                return 150.0;
-            default:
-                return 150.0;
+    // Single Responsibility: PriceCalculator ONLY calculates math.
+    // It does not print anything and does not change seat status.
+    public static double calculateTotal(List<ShowSeat> seats) {
+        double total = 0.0;
+        for (ShowSeat showSeat : seats) {
+            total += showSeat.getSeat().getPrice();
         }
-    }
-
-    public double calculateDiscountedPrice(String seatType, double percentage) {
-        double basePrice = calculatePrice(seatType);
-        return basePrice * (1 - percentage / 100);
+        return total;
     }
 }

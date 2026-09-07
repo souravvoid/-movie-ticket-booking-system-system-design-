@@ -1,29 +1,18 @@
+// ================= FILE: Payment.java =================
 public abstract class Payment {
-    private double amount;
+
+    // OOP Concept: Encapsulation (field is private, exposed via getter)
+    // OOP Concept: Abstraction (Payment exposes behaviour without implementation details)
     private String paymentMethod;
-    private boolean success;
 
-    public Payment(double amount, String paymentMethod) {
-        this.amount = amount;
+    // OOP Concept: this keyword (distinguishes instance field from parameter)
+    public Payment(String paymentMethod) {
         this.paymentMethod = paymentMethod;
-        this.success = false;
-    }
-
-    public double getAmount() {
-        return amount;
     }
 
     public String getPaymentMethod() {
-        return paymentMethod;
+        return this.paymentMethod;
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public abstract void processPayment();
+    public abstract boolean pay(double amount);
 }
